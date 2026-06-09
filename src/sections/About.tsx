@@ -21,7 +21,7 @@ export default function About() {
                         {data.initials}
                     </div>
                     <div className="flex flex-col gap-4 p-3 bg-black/50 border-neutral-500 border">
-                        <h1>Kienan Ma</h1>
+                        <h1>Kienan (Teng) Ma</h1>
                         <p className="text-body">{data.bio}</p>
                     </div>
                 </div>
