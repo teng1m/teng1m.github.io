@@ -10,8 +10,10 @@ export default function Contact() {
     const floatTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const clearTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+    const address = () => `${data.email.user}@${data.email.domain}.${data.email.tld}`;
+
     const handleCopy = (e: React.MouseEvent<HTMLButtonElement>) => {
-        navigator.clipboard.writeText(`${data.email.user}@${data.email.domain}`);
+        navigator.clipboard.writeText(address());
 
         if (floatTimerRef.current) clearTimeout(floatTimerRef.current);
         if (clearTimerRef.current) clearTimeout(clearTimerRef.current);
@@ -30,24 +32,25 @@ export default function Contact() {
 
     return (
         <>
-            <div className="flex flex-col gap-6">
-                <div>
-                    <h1>Contact</h1>
-                    <p>
-                        The best way to reach me is by email. I'm always open to new opportunities,
-                        collaborations, or just a good conversation.
-                    </p>
-                </div>
+            <div className="flex flex-col gap-2">
+                <h1>Contact</h1>
+                <p>
+                    {`The best way to reach me is by email. `}
+                </p>
                 <button
                     type="button"
                     onClick={handleCopy}
-                    className="glass-borders p-1 block hover:opacity-80 transition-opacity w-full text-left cursor-pointer"
+                    className="glass-borders p-1 block hover:opacity-80 transition-opacity w-full text-left cursor-pointer mt-2"
                 >
                     <div className="flex items-center font-mono text-sm text-body flex-row py-2 px-3 bg-black/50 border-neutral-500 border">
-                        <span>{data.email.user}</span>
-                        <span className="text-muted">@</span>
-                        <span>{data.email.domain}</span>
-                        <img src="/copy.ico" className="size-6 ml-auto"/>
+                        <span className="whitespace-pre">
+                            {data.email.user}
+                            <span className="text-gray-400"> at </span>
+                            {data.email.domain}
+                            <span className="text-gray-400"> dot </span>
+                            {data.email.tld}
+                        </span>
+                        <img src="/copy.ico" className="size-6 ml-auto" />
                     </div>
                 </button>
             </div>
