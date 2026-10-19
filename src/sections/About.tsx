@@ -10,8 +10,8 @@ export default function About({ setSection }: Props) {
     return (
         <div className="flex flex-col h-full w-full gap-3">
             <h1>About</h1>
-            <div className="flex-row flex w-full">
-                <div className="glass-borders f-full p-3 flex-row flex gap-4">
+            <div className="glass-borders p-1 flex flex-col">
+                <div className="flex flex-row gap-4 p-3 bg-black/50 border-neutral-500 border">
                     <div
                         className="shrink-0 flex items-center justify-center rounded-full text-xl font-bold text-white"
                         style={{
@@ -26,7 +26,7 @@ export default function About({ setSection }: Props) {
                     >
                         {data.initials}
                     </div>
-                    <div className="flex flex-col gap-4 p-3 bg-black/50 border-neutral-500 border">
+                    <div className="flex flex-col gap-4">
                         <h1>Kienan (Teng) Ma</h1>
                         <p className="text-body">
                             {before}
