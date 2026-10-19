@@ -11,7 +11,7 @@ type Section = "about" | "experience" | "contact" | "resume";
 
 export default function App() {
     const [section, setSection] = useState<Section>("about");
-    const [navOpen, setNavOpen] = useState(true);
+    const [navOpen, setNavOpen] = useState(false);
 
     return (
         <>
