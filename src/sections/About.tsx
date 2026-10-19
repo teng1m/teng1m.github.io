@@ -33,7 +33,7 @@ export default function About({ setSection }: Props) {
                             <button
                                 type="button"
                                 onClick={() => setSection("contact")}
-                                className="underline cursor-pointer"
+                                className="inline-block underline cursor-pointer transition-transform duration-50 ease-in-out hover:scale-105"
                             >
                                 Contact
                             </button>
