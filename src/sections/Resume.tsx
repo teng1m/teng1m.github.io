@@ -1,6 +1,9 @@
+import { useState } from "react";
 import data from "../data/data";
 
 export default function Resume() {
+    const [loaded, setLoaded] = useState(false);
+
     const gloss =
         "relative overflow-hidden before:absolute before:inset-x-[5%] before:top-0 before:h-4 before:rounded-lg before:opacity-30 before:pointer-events-none before:bg-linear-to-b before:from-white/10 before:to-white/30";
 
@@ -26,11 +29,22 @@ export default function Resume() {
                             Download
                         </a>
                     </div>
-                    <iframe
-                        src={data.links.resume}
-                        className="flex-1 w-full min-h-0"
-                        style={{ height: "100%" }}
-                    />
+                    <div className="relative flex-1 min-h-0">
+                        <iframe
+                            src={data.links.resume}
+                            onLoad={() => setLoaded(true)}
+                            className="size-full"
+                        />
+                        <div
+                            className={`absolute inset-0 flex items-center justify-center bg-neutral-900 transition-opacity duration-300 ${loaded ? "opacity-0 pointer-events-none" : ""}`}
+                        >
+                            <img
+                                src="/windows_vista_loading_by_luthien_surion.gif"
+                                alt="Loading"
+                                className="size-6"
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
