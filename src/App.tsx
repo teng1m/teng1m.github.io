@@ -125,7 +125,7 @@ export default function App() {
                     </div>
                     {/* content */}
                     <div
-                        className={`relative z-0 flex-1 overflow-x-auto m-3 pr-2 min-w-80 ${section === "resume" ? "overflow-hidden" : "overflow-y-auto"}`}
+                        className={`relative z-0 flex-1 overflow-x-auto m-3 pr-2 min-w-0 ${section === "resume" ? "overflow-hidden" : "overflow-y-auto"}`}
                     >
                         {section === "about" && <About setSection={setSection} />}
                         {section === "experience" && <Experience />}
