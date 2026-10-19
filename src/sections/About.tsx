@@ -1,6 +1,12 @@
 import data from "../data/data";
 
-export default function About() {
+interface Props {
+    setSection: (section: "contact") => void;
+}
+
+export default function About({ setSection }: Props) {
+    const [before, after] = data.bio.split("Contact");
+
     return (
         <div className="flex flex-col h-full w-full gap-3">
             <h1>About</h1>
@@ -22,7 +28,17 @@ export default function About() {
                     </div>
                     <div className="flex flex-col gap-4 p-3 bg-black/50 border-neutral-500 border">
                         <h1>Kienan (Teng) Ma</h1>
-                        <p className="text-body">{data.bio}</p>
+                        <p className="text-body">
+                            {before}
+                            <button
+                                type="button"
+                                onClick={() => setSection("contact")}
+                                className="underline cursor-pointer"
+                            >
+                                Contact
+                            </button>
+                            {after}
+                        </p>
                     </div>
                 </div>
             </div>
