@@ -1,6 +1,7 @@
 import { useState } from "react";
 import data from "./data/data";
 import SideNavButton from "./components/SideNavButton";
+import MenuArrow from "./components/MenuArrow";
 // import IconOrb from "./components/IconOrb";
 import Experience from "./sections/Experience";
 import Resume from "./sections/Resume";
@@ -53,10 +54,7 @@ export default function App() {
                         className="md:hidden ml-auto flex flex-row gap-2 items-center"
                     >
                         <h2 className="text-white text-lg">Menu</h2>
-                        <img
-                            src={navOpen ? "/arrowleft.ico" : "/arrowright.ico"}
-                            className="inline-block size-5"
-                        />
+                        <MenuArrow open={navOpen} className="inline-block size-5" />
                     </button>
                 </div>
 
