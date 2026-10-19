@@ -32,6 +32,9 @@ export default function SideNavButton({
         >
             {icon}
             {children}
+            {external && (
+                <img src="/shortcut.png" aria-hidden="true" className="size-4 ml-auto shrink-0" />
+            )}
         </a>
     );
 }
