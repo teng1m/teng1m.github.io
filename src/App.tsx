@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import data from "./data/data";
 import SideNavButton from "./components/SideNavButton";
 import MenuArrow from "./components/MenuArrow";
@@ -8,16 +8,23 @@ import Resume from "./sections/Resume";
 import About from "./sections/About";
 import Contact from "./sections/Contact";
 
-type Section = "about" | "experience" | "contact" | "resume";
+const sections = ["about", "experience", "contact", "resume"] as const;
+type Section = (typeof sections)[number];
+
+const sectionFromHash = (): Section => {
+    const hash = window.location.hash.slice(1);
+    return sections.find((s) => s === hash) ?? "about";
+};
 
 export default function App() {
-    const [section, setSection] = useState<Section>("about");
+    const [section, setSection] = useState<Section>(sectionFromHash);
     const [navOpen, setNavOpen] = useState(false);
 
-    const navigate = (next: Section) => {
-        setSection(next);
-        setNavOpen(false);
-    };
+    useEffect(() => {
+        const onHashChange = () => setSection(sectionFromHash());
+        window.addEventListener("hashchange", onHashChange);
+        return () => window.removeEventListener("hashchange", onHashChange);
+    }, []);
 
     return (
         <>
@@ -71,21 +78,24 @@ export default function App() {
                         <nav className="w-40 h-full bg-neutral-800/90 md:bg-[rgba(8,8,8,.45)] border-r border-border py-2 px-1.5 flex flex-col gap-2">
                             <SideNavButton
                                 active={section === "about"}
-                                onClick={() => navigate("about")}
+                                href="#about"
+                                onClick={() => setNavOpen(false)}
                                 icon={<img src="/about.ico" className="w-6" />}
                             >
                                 About
                             </SideNavButton>
                             <SideNavButton
                                 active={section === "experience"}
-                                onClick={() => navigate("experience")}
+                                href="#experience"
+                                onClick={() => setNavOpen(false)}
                                 icon={<img src="/experience.ico" className="w-6" />}
                             >
                                 Experience
                             </SideNavButton>
                             <SideNavButton
                                 active={section === "resume"}
-                                onClick={() => navigate("resume")}
+                                href="#resume"
+                                onClick={() => setNavOpen(false)}
                                 icon={<img src="/resume.ico" className="size-6" />}
                             >
                                 Resume
@@ -122,7 +132,8 @@ export default function App() {
                             </SideNavButton>
                             <SideNavButton
                                 active={section === "contact"}
-                                onClick={() => navigate("contact")}
+                                href="#contact"
+                                onClick={() => setNavOpen(false)}
                                 icon={<img src="/mail.ico" className="size-6" />}
                             >
                                 Contact
@@ -133,7 +144,7 @@ export default function App() {
                     <div
                         className={`relative z-0 flex-1 overflow-x-auto m-3 pr-2 min-w-0 ${section === "resume" ? "overflow-hidden" : "overflow-y-auto"}`}
                     >
-                        {section === "about" && <About setSection={setSection} />}
+                        {section === "about" && <About />}
                         {section === "experience" && <Experience />}
                         {section === "contact" && <Contact />}
                         {section === "resume" && <Resume />}

@@ -1,10 +1,6 @@
 import data from "../data/data";
 
-interface Props {
-    setSection: (section: "contact") => void;
-}
-
-export default function About({ setSection }: Props) {
+export default function About() {
     const [before, after] = data.bio.split("Contact");
 
     return (
@@ -27,13 +23,12 @@ export default function About({ setSection }: Props) {
                     <h1 className="self-center md:self-start">Kienan (Teng) Ma</h1>
                     <p className="text-body col-span-2 md:col-span-1 md:col-start-2">
                         {before}
-                        <button
-                            type="button"
-                            onClick={() => setSection("contact")}
+                        <a
+                            href="#contact"
                             className="inline-block underline cursor-pointer transition-transform duration-50 ease-in-out hover:scale-105"
                         >
                             Contact
-                        </button>
+                        </a>
                         {after}
                     </p>
                 </div>
