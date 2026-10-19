@@ -13,6 +13,11 @@ export default function App() {
     const [section, setSection] = useState<Section>("about");
     const [navOpen, setNavOpen] = useState(false);
 
+    const navigate = (next: Section) => {
+        setSection(next);
+        setNavOpen(false);
+    };
+
     return (
         <>
             <div className="fixed bottom-2 right-2 z-50 px-2 py-1 glass-borders">
@@ -30,8 +35,7 @@ export default function App() {
             </div>
             <div
                 className="w-[min(800px,95vw)] h-[min(600px,90vh)] flex flex-col rounded-2xl overflow-hidden border
-        border-[rgba(236,242,249,.18)] 
-        bg-linear-to-b from-[rgba(66,66,66,.4)] to-[rgba(22,22,22,.88)] backdrop-blur-[6px] backdrop-saturate-130 shadow-[2px_2px_12px_rgba(0,0,0,.85),inset_-1px_-1px_0_rgba(255,255,255,.08)] outline-1 outline-[rgba(28,49,39,.4)]"
+        border-[rgba(236,242,249,.18)] bg-linear-to-b from-[rgba(66,66,66,.4)] to-[rgba(22,22,22,.88)] backdrop-blur-[6px] backdrop-saturate-130 shadow-[2px_2px_12px_rgba(0,0,0,.85),inset_-1px_-1px_0_rgba(255,255,255,.08)] outline-1 outline-[rgba(28,49,39,.4)]"
             >
                 {/* title bar */}
                 <div className="[background:linear-gradient(180deg,rgba(172,172,172,.92)_0%,rgba(71,71,71,.92)_20%,rgba(19,19,19,.92)_40%,rgba(7,7,7,.95)_100%)] border-b border-border py-3 px-5 flex items-center gap-3 shrink-0">
@@ -57,29 +61,33 @@ export default function App() {
                 </div>
 
                 {/* body */}
-                <div className="relative flex flex-1 overflow-hidden">
+                <div
+                    className="relative flex flex-1 overflow-hidden"
+                    onClick={() => setNavOpen(false)}
+                >
                     {/* sidebar */}
                     <div
+                        onClick={(e) => e.stopPropagation()}
                         className={`absolute top-0 h-full z-1000 w-40 overflow-hidden transition-[left] duration-200 md:relative md:shrink-0 md:w-40 md:left-0 ${navOpen ? "left-0" : "-left-40"}`}
                     >
                         <nav className="w-40 h-full bg-neutral-800/90 md:bg-[rgba(8,8,8,.45)] border-r border-border py-2 px-1.5 flex flex-col gap-2">
                             <SideNavButton
                                 active={section === "about"}
-                                onClick={() => setSection("about")}
+                                onClick={() => navigate("about")}
                                 icon={<img src="/about.ico" className="w-6" />}
                             >
                                 About
                             </SideNavButton>
                             <SideNavButton
                                 active={section === "experience"}
-                                onClick={() => setSection("experience")}
+                                onClick={() => navigate("experience")}
                                 icon={<img src="/experience.ico" className="w-6" />}
                             >
                                 Experience
                             </SideNavButton>
                             <SideNavButton
                                 active={section === "resume"}
-                                onClick={() => setSection("resume")}
+                                onClick={() => navigate("resume")}
                                 icon={<img src="/resume.ico" className="size-6" />}
                             >
                                 Resume
@@ -116,7 +124,7 @@ export default function App() {
                             </SideNavButton>
                             <SideNavButton
                                 active={section === "contact"}
-                                onClick={() => setSection("contact")}
+                                onClick={() => navigate("contact")}
                                 icon={<img src="/mail.ico" className="size-6" />}
                             >
                                 Contact
