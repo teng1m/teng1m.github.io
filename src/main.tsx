@@ -11,7 +11,7 @@ document.addEventListener("click", (e) => {
         navSound.currentTime = 0;
         navSound.play().catch(() => {});
     }
-});
+}, { capture: true });
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
