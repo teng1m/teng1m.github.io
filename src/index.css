@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant short (@media (max-height: 480px));
+
 @font-face {
     font-family: "Segoe UI";
     src: url("/SEGOEUI.TTF") format("truetype");

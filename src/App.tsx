@@ -28,7 +28,7 @@ export default function App() {
 
     return (
         <>
-            <div className="fixed bottom-2 right-2 z-50 px-2 py-1 glass-borders">
+            <div className="fixed bottom-2 right-2 z-50 px-2 py-1 glass-borders short:hidden">
                 <p className="leading-tight text-xs">
                     Inspired by{" "}
                     <a
@@ -75,7 +75,7 @@ export default function App() {
                         onClick={(e) => e.stopPropagation()}
                         className={`absolute top-0 h-full z-1000 w-40 overflow-hidden transition-[left] duration-200 md:relative md:shrink-0 md:w-40 md:left-0 ${navOpen ? "left-0" : "-left-40"}`}
                     >
-                        <nav className="w-40 h-full bg-neutral-800/90 md:bg-[rgba(8,8,8,.45)] border-r border-border py-2 px-1.5 flex flex-col gap-2">
+                        <nav className="w-40 h-full overflow-y-auto bg-neutral-800/90 md:bg-[rgba(8,8,8,.45)] border-r border-border py-2 px-1.5 flex flex-col gap-2">
                             <SideNavButton
                                 active={section === "about"}
                                 href="#about"
