@@ -42,7 +42,7 @@ export default function App() {
                 </p>
             </div>
             <div
-                className="w-[min(800px,95vw)] h-[min(600px,90vh)] flex flex-col rounded-2xl overflow-hidden border
+                className="w-[min(800px,95vw)] h-[min(600px,90dvh)] flex flex-col rounded-2xl overflow-hidden border
         border-[rgba(236,242,249,.18)] bg-linear-to-b from-[rgba(66,66,66,.4)] to-[rgba(22,22,22,.88)] backdrop-blur-[6px] backdrop-saturate-130 shadow-[2px_2px_12px_rgba(0,0,0,.85),inset_-1px_-1px_0_rgba(255,255,255,.08)] outline-1 outline-[rgba(28,49,39,.4)]"
             >
                 {/* title bar */}
